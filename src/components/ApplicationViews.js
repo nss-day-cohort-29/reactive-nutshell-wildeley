@@ -75,12 +75,12 @@ state = {
           }}
         />
 
-        <Route
-          exact path="/messages/" render={props => {
+        {/* <Route
+          exact path="/messages/:id" render={props => {
             return <Messages  messages={this.state.messages}/>
             // Remove null and return the component which will show the messages
           }}
-        />
+        /> */}
 
         <Route
           path="/tasks" render={props => {
