@@ -1,16 +1,16 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-
+import './Messages.css'
 
 
 export default class Messages  extends Component {
     render() {
 
         return (
-            <section className="messageList"> Messages:
+            <section className="messagesList"> Messages:
             {
                 this.props.messages.map(message =>
-                    <div className="Message" key={message.id}>
+                    <div className="message" key={message.id}>
                         To {message.to} :  {message.message}
                     </div>
                 )

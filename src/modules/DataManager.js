@@ -6,5 +6,10 @@ export default {
   },
   getAllMessages() {
     return fetch(`${remoteURL}/messages`).then(e => e.json())
-  }
+  },
+  getAllAscend(resource)  {
+        return fetch(`${remoteURL}/${resource}?_sort=date&_order=asc`)
+        .then(result => result.json())
+    }
+
 }

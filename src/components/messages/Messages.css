@@ -1,0 +1,19 @@
+.messagesList {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    background-color: whitesmoke;
+    justify-content: space-around;
+    flex-direction: column;
+    border: 4px solid grey;
+    border-radius: 20px;
+}
+
+.message {
+    border: 5px solid lightslategray;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    margin: 25px;
+    padding: 25px;
+}
+

@@ -27,6 +27,20 @@ messages = [
     message: "Why not both?",
     date: "2018-09-07T19:21:42.394Z",
     userId: 2
+  },
+  {
+    id: 4,
+    to: "Leah",
+    message: "Can't spell 'Leah' without L. A. ",
+    date: "2018-09-07T19:21:42.394Z",
+    userId: 2
+  },
+  {
+    id: 5,
+    to: "Andy",
+    message: "Why?, Why?, Why?, Why?, Why?",
+    date: "2018-09-07T19:21:42.394Z",
+    userId: 2
   }
 
 ]
@@ -56,6 +70,13 @@ state = {
 
         <Route
           path="/messages" render={props => {
+            return <Messages  messages={this.state.messages}/>
+            // Remove null and return the component which will show the messages
+          }}
+        />
+
+        <Route
+          exact path="/messages/" render={props => {
             return <Messages  messages={this.state.messages}/>
             // Remove null and return the component which will show the messages
           }}
