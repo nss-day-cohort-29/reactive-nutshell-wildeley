@@ -11,10 +11,10 @@ export default class ApplicationViews extends Component {
     news:[]
   }
 
-  newPost= (news) => NewsManager.post(news)
+  newArticle = (article) => NewsManager.post(article)
   .then(() => NewsManager.getAll())
-  .then(allNews => this.setState({
-      news: allNews
+  .then(allArticles => this.setState({
+      news: allArticles
     })
   )
 
@@ -24,7 +24,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            return <NewsForm/>
+            return <NewsForm {...props} addArticle={this.newArticle} />
           }}
         />
 

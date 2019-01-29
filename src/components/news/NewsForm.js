@@ -4,7 +4,6 @@ import NewsManager from "./NewsManager"
 export default class NewsForm extends Component {
     // Set initial state
     state = {
-      newsId:"",
       newsTitle: "",
       synopsis: "",
       url: ""
@@ -18,31 +17,17 @@ export default class NewsForm extends Component {
         this.setState(stateToChange)
     }
 
-    updateExistingStudent = evt => {
-      evt.preventDefault()
+    constructNewArticle = evt => {
+        evt.preventDefault()
+            const article = {
+                newsTitle: this.state.newsTitle,
+                synopsis: this.state.synopsis,
+                url: this.props.url            
+            }
+            this.props.addArticle(article).then(() => this.props.history.push("/"))
+        }
+        
 
-      const existingNews = {
-        newsId: this.state.newsId,
-        newsTitle: this.state.newsTitle,
-        synopsis: this.state.synopsis,
-        url:this.state.url
-      }
-
-    
-    this.props.updateNews(this.props.match.params.newsId,existingNews)
-    .then(() => this.props.history.push("/news"))      
-    }
-
-    // componentDidMount() {
-    //   NewsManager.get(this.props.match.params.newsId)
-    //   .then(student => {
-    //     this.setState({
-    //       firstName: student.firstName,
-    //       lastName: student.lastName,
-    //       notes: student.notes
-    //     });
-    //   });
-    // }
 
 
     render() {
@@ -78,7 +63,7 @@ export default class NewsForm extends Component {
                     </div>
                     
                     <button type="submit"
-                     onClick={this.updateExistingStudent} className="btn btn-primary">
+                     onClick={this.constructNewArticle} className="btn btn-primary">
                      Submit</button>
                 </form>
             </React.Fragment>

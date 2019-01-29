@@ -7,13 +7,13 @@ export default {
   getAll() {
     return fetch(`${remoteURL}/news`).then(e => e.json());
   },
-  post(newPost) {
+  post(newArticle) {
     return fetch(`${remoteURL}/news`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newPost)
+      body: JSON.stringify(newArticle)
     }).then(data => data.json());
   }
 };
