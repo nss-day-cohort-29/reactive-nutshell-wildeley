@@ -20,8 +20,9 @@ export default class NewMessageForm  extends Component {
     }
 
     constructNewMessage = evt => {
-        evt.preventDefault()
-        this.props.addMessage()
+        console.log("constructNewMessage Function executed")
+        // evt.preventDefault()
+        // this.props.addMessage()
 
         // const credentials = JSON.parse(localStorage.getItem('credentials'))
         // const messages = {
@@ -78,7 +79,7 @@ export default class NewMessageForm  extends Component {
                     className="btn btn-primary"
                     id="NewMessage"
                     onClick={() => {
-                    console.log("new Message button clicked")
+                    
                     this.constructNewMessage()
                     this.props.history.push("/messages/")
                     }}>Add a new message

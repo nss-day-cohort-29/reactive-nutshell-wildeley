@@ -12,6 +12,7 @@
 .message {
     border: 5px solid lightslategray;
     background-color: whitesmoke;
+    font-size: 2em;
     border-radius: 20px;
     margin: 25px;
     padding: 25px;
@@ -24,10 +25,4 @@
     margin: 25px;
     padding: 25px;
 
-}
-
-.button {
-    border-radius: 8px;
-    margin: 8px;
-    padding: 8px
 }

@@ -61,7 +61,7 @@ componentDidMount() {
 
         <Route
           exact path="/messages" render={props => {
-            return <Messages  {...props} messages={this.state.messages}/>
+            return <Messages  {...props} messages={this.state.messages} users={this.state.users}/>
             // Remove null and return the component which will show the messages
           }}
         />
