@@ -20,7 +20,7 @@ export default class NewMessageForm  extends Component {
     }
 
     constructNewMessage = evt => {
-        // evt.preventDefault()
+        evt.preventDefault()
         this.props.addMessage()
 
         // const credentials = JSON.parse(localStorage.getItem('credentials'))
@@ -40,12 +40,42 @@ export default class NewMessageForm  extends Component {
 
     render() {
         return (
-        <div>BIG DIV - encapsulates 2 divs: Grady's way and Kennel-way
-            <div className="newMessageForm-v1">
-                <h3>New Messages Form Goes here:</h3>
-                <h3>input field goes here</h3>
-                <h3>input field goes here</h3>
+
+            <React.Fragment>
+                <form className="newMessageForm-v1">
+
+                    <div className="form-group">
+                        <label htmlFor="person_sending_the_message">From</label>
+                        <select defaultValue="" name="person_sending_the_message" id="person_sending_the_message"
+                                onChange={this.handleFieldChange}>
+                            <option value="">(select user)</option>
+                        {
+                            this.props.users.map(e => <option key={e.id} id={e.id}>{e.username}</option>)
+                        }
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="message">Message</label>
+                        <input type="text" required
+                               className="form-control"
+                               onChange={this.handleFieldChange}
+                               id="message" placeholder="What's on your mind today?" />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="person_receiving_the_message">To: </label>
+                        <select defaultValue="" name="person_receiving_the_message" id="person_receiving_the_message"
+                                onChange={this.handleFieldChange}>
+                            <option value="">(select user)</option>
+                        {
+                            this.props.users.map(e => <option key={e.id} id={e.id}>{e.username}</option>)
+                        }
+                        </select>
+                    </div>
+
                 <button
+                    // type="submit"
+                    className="btn btn-primary"
                     id="NewMessage"
                     onClick={() => {
                     console.log("new Message button clicked")
@@ -53,38 +83,9 @@ export default class NewMessageForm  extends Component {
                     this.props.history.push("/messages/")
                     }}>Add a new message
                 </button>
-            </div>
-            <React.Fragment>
-                <form className="animalForm">
-                    <div className="form-group">
-                        <label htmlFor="animalName">Animal name</label>
-                        <input type="text" required
-                               className="form-control"
-                               onChange={this.handleFieldChange}
-                               id="animalName"
-                               placeholder="Animal name" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="breed">Breed</label>
-                        <input type="text" required
-                               className="form-control"
-                               onChange={this.handleFieldChange}
-                               id="breed" placeholder="Breed" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="employee">Assign to user</label>
-                        <select defaultValue="" name="employee" id="employee"
-                                onChange={this.handleFieldChange}>
-                            <option value="">Select an employee</option>
-                        {
-                            this.props.users.map(e => <option key={e.id} id={e.id}>{e.name}</option>)
-                        }
-                        </select>
-                    </div>
-                    <button type="submit" onClick={this.constructNewAnimal} className="btn btn-primary">Submit</button>
+
                 </form>
             </React.Fragment>
-        </div>
         )
     }
 }
