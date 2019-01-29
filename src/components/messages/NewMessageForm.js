@@ -23,6 +23,7 @@ export default class NewMessageForm  extends Component {
     constructNewMessage = evt => {
         // console.log("constructNewMessage Function executed")
         // evt.preventDefault()
+        console.log("this.state :", this.state)
         this.props.addMessage(this.state)
         this.props.history.push("/messages/")
         // const credentials = JSON.parse(localStorage.getItem('credentials'))
