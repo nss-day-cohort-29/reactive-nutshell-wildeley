@@ -17,3 +17,11 @@
     padding: 25px;
 }
 
+.newMessageForm {
+    border: 5px solid lightslategray;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    margin: 25px;
+    padding: 25px;
+
+}

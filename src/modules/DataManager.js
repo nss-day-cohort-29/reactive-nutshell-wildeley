@@ -7,9 +7,22 @@ export default {
   getAllMessages() {
     return fetch(`${remoteURL}/messages`).then(e => e.json())
   },
-  getAllAscend(resource)  {
-        return fetch(`${remoteURL}/${resource}?_sort=date&_order=asc`)
-        .then(result => result.json())
+  getAllUsers() {
+    return fetch(`${remoteURL}/users`).then(e => e.json())
+  },
+  postNewMessage(newmessage) {
+      return fetch(`${remoteURL}/messages`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newmessage)
+        }).then(data => data.json())
     }
+//   getAllAscend(resource)  {
+//         return fetch(`${remoteURL}/${resource}?_sort=date&_order=asc`)
+//         .then(result => result.json())
+//   },
+
 
 }

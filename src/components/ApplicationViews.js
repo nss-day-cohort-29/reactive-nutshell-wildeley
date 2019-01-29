@@ -3,12 +3,20 @@ import React, { Component } from "react";
 import DataManager from './../modules/DataManager'
 
 import Messages from './messages/Messages'
+import NewMessageForm from "./messages/NewMessageForm";
 
 export default class ApplicationViews extends Component {
 
 state = {
-  messages: []
+  messages: [],
+  users: []
 }
+
+addMessage = newmessage => DataManager.postNewMessage(newmessage)
+    .then(() => DataManager.getAllMessages())
+    .then(messages => this.setState({
+      messages: messages
+    }))
 
 componentDidMount() {
 
@@ -18,6 +26,11 @@ componentDidMount() {
     .then(allMessages => {
       newState.messages = allMessages
     })
+  DataManager.getAllUsers()
+    .then(allUsers => {
+      newState.users = allUsers
+    })
+
     .then(() => {
       this.setState(newState)
     })
@@ -43,18 +56,20 @@ componentDidMount() {
         />
 
         <Route
-          path="/messages" render={props => {
-            return <Messages  messages={this.state.messages}/>
+          exact path="/messages" render={props => {
+            return <Messages  {...props} messages={this.state.messages}/>
             // Remove null and return the component which will show the messages
           }}
         />
 
-        {/* <Route
-          exact path="/messages/:id" render={props => {
-            return <Messages  messages={this.state.messages}/>
-            // Remove null and return the component which will show the messages
+        <Route
+          exact path="/messages/new" render={props => {
+            return <NewMessageForm {...props}
+              addMessage={this.addMessage}
+              users={this.state.users}
+            />
           }}
-        /> */}
+        />
 
         <Route
           path="/tasks" render={props => {
