@@ -18,6 +18,7 @@ export default class Messages  extends Component {
                         To {message.to} :  {message.message}
                         <br />
                         <button id={message.id} onClick={() => {console.log(`edit button # ${message.id} clicked`)}}> Edit this message </button>
+                        <button  onClick={() => {console.log(`delete button # ${message.id} clicked`)}}> Delete this message </button>
                     </div>
                 )
             }
