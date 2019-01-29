@@ -12,11 +12,15 @@ state = {
   users: []
 }
 
-addMessage = newmessage => DataManager.postNewMessage(newmessage)
-    .then(() => DataManager.getAllMessages())
-    .then(messages => this.setState({
-      messages: messages
-    }))
+// addMessage = newmessage => DataManager.postNewMessage(newmessage)
+//     .then(() => DataManager.getAllMessages())
+//     .then(messages => this.setState({
+//       messages: messages
+//     }))
+
+addMessage() {
+  console.log("bloop")
+}
 
 componentDidMount() {
 

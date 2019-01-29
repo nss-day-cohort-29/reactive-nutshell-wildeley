@@ -4,6 +4,27 @@ import './Messages.css'
 
 
 export default class NewMessageForm  extends Component {
+
+
+    constructNewMessage = evt => {
+        // evt.preventDefault()
+        this.props.addMessage()
+
+        // const credentials = JSON.parse(localStorage.getItem('credentials'))
+        // const messages = {
+        //     "bloop"
+            // id: this.state.messageId,
+            // to: this.state.messageTo,
+            // message: this.state.message,
+            // date: new Date().toISOString(),
+            // userId: credentials.id
+        // }
+
+        // this.props.addMessage(messages)
+        // .then(() => this.props.history.push("/messages"))
+    }
+
+
     render() {
         return (
         <div className="newMessageForm">
@@ -14,7 +35,7 @@ export default class NewMessageForm  extends Component {
                 id="NewMessage"
                 onClick={() => {
                 console.log("new Message button clicked")
-                this.addMessage("bloop")
+                this.constructNewMessage()
                 this.props.history.push("/messages/")
                 }}>Add a new message
             </button>
