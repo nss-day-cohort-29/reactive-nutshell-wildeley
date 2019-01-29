@@ -6,47 +6,21 @@ import Messages from './messages/Messages'
 
 export default class ApplicationViews extends Component {
 
-messages = [
-  {
-    id: 1,
-    to: "Jisie",
-    message: "Oh My God!",
-    date: "2018-09-07T19:11:28.887Z",
-    userId: 2
-  },
-  {
-    id: 2,
-    to: "Meg",
-    message: "Double Trouble on the way",
-    date: "2018-09-07T19:21:42.394Z",
-    userId: 2
-  },
-  {
-    id: 3,
-    to: "Emily",
-    message: "Why not both?",
-    date: "2018-09-07T19:21:42.394Z",
-    userId: 2
-  },
-  {
-    id: 4,
-    to: "Leah",
-    message: "Can't spell 'Leah' without L. A. ",
-    date: "2018-09-07T19:21:42.394Z",
-    userId: 2
-  },
-  {
-    id: 5,
-    to: "Andy",
-    message: "Why?, Why?, Why?, Why?, Why?",
-    date: "2018-09-07T19:21:42.394Z",
-    userId: 2
-  }
-
-]
-
 state = {
-  messages: this.messages
+  messages: []
+}
+
+componentDidMount() {
+
+  const newState = {}
+
+  DataManager.getAllMessages()
+    .then(allMessages => {
+      newState.messages = allMessages
+    })
+    .then(() => {
+      this.setState(newState)
+    })
 }
 
 
