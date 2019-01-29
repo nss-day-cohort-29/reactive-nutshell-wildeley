@@ -14,7 +14,7 @@ export default class NewMessageForm  extends Component {
                 id="NewMessage"
                 onClick={() => {
                 console.log("new Message button clicked")
-                
+                this.addMessage("bloop")
                 this.props.history.push("/messages/")
                 }}>Add a new message
             </button>
