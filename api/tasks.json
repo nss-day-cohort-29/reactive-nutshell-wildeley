@@ -1,9 +1,15 @@
 {
-    "tasks": [
-        {   "id": 1,
-            "userId": 2,
-            "task": "Take out garbage",
-            "completionDate": "01/01/2020"
-        }
-    ]
+  "tasks": [
+    {
+      "task": "Take out garbage",
+      "completionDate": "01/01/2020",
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    }
+  ]
 }

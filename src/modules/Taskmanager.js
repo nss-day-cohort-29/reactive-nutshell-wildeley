@@ -6,13 +6,15 @@ export default {
     getAll() {
       return fetch(`${remoteURL}/tasks`).then(e => e.json());
     },
-    put(taskId, ExistingTask) {
-      return fetch(`${remoteURL}/tasks/${taskId}`, {
-        method: "PUT",
+    post(task) {
+      return fetch(`${remoteURL}/tasks/`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(ExistingTask)
+        body: JSON.stringify(task)
       }).then(data => data.json());
+      }
     }
-  };
+
+   

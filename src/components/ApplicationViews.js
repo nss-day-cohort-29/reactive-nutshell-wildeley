@@ -8,7 +8,7 @@ export default class ApplicationViews extends Component {
 
   state = {
     tasks: []
-  }
+  };
 
   componentDidMount() {
     TaskManager.getAll()
@@ -18,6 +18,23 @@ export default class ApplicationViews extends Component {
       });
     });
   }
+  updateTask = (TaskId, editedTaskObj) => {
+    return TaskManager.put(TaskId, editedTaskObj)
+    .then(() => TaskManager.getAll())
+    .then(tasks => {
+      this.setState({
+        tasks: tasks
+      })
+    });
+  };
+  addTask = task =>
+    TaskManager.post(task)
+      .then(() => TaskManager.getAll())
+      .then(tasks =>
+        this.setState({
+          tasks: tasks
+        })
+      );
 
   render() {
     return (
@@ -45,12 +62,19 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
+          exact 
           path="/tasks" render={props => {
-            return <TaskList tasks = { this.state.tasks} />
+            return <TaskList {...props} tasks = { this.state.tasks} />
           }}
         />
         <Route
-        path="/tasks/:task(\d+)/edit" render={props => {
+          exact 
+          path="/tasks/new" render={props => {
+            return <TaskForm {...props} addTask={this.addTask} />
+          }}
+        />
+        <Route
+        path="/tasks/:taskId(\d+)/edit" render={props => {
             return <TaskForm {...props} updateTask={this.updateTask}/>
           }}
         />
