@@ -18,8 +18,9 @@ state = {
 //       messages: messages
 //     }))
 
-addMessage() {
+addMessage = message => {
   console.log("bloop")
+  DataManager.postNewMessage(message)
 }
 
 componentDidMount() {

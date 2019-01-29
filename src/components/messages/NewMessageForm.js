@@ -7,23 +7,24 @@ export default class NewMessageForm  extends Component {
 
     // Set initial state
     state = {
-        to: "",
+        person_sending_the_message: "",
         message: "",
-        userId: ""
+        person_receiving_the_message: "",
     }
 
     // Update state whenever an input field is edited
     handleFieldChange = evt => {
+        console.log("evt", evt.target.value)
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
 
     constructNewMessage = evt => {
-        console.log("constructNewMessage Function executed")
+        // console.log("constructNewMessage Function executed")
         // evt.preventDefault()
-        // this.props.addMessage()
-
+        this.props.addMessage(this.state)
+        this.props.history.push("/messages/")
         // const credentials = JSON.parse(localStorage.getItem('credentials'))
         // const messages = {
         //     "bloop"
@@ -75,14 +76,13 @@ export default class NewMessageForm  extends Component {
                     </div>
 
                 <button
-                    // type="submit"
+                    type="submit"
                     className="btn btn-primary"
                     id="NewMessage"
                     onClick={() => {
-                    
-                    this.constructNewMessage()
-                    this.props.history.push("/messages/")
-                    }}>Add a new message
+                    this.constructNewMessage(this.state.message)
+                    }}
+                    >Add a new message
                 </button>
 
                 </form>
