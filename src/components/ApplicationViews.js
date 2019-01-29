@@ -1,7 +1,8 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import TaskManager from "../modules/Taskmanager"
 import TaskList from "../components/tasks/TaskList"
+import TaskForm from "../components/tasks/TaskForm"
 
 export default class ApplicationViews extends Component {
 
@@ -46,8 +47,11 @@ export default class ApplicationViews extends Component {
         <Route
           path="/tasks" render={props => {
             return <TaskList tasks = { this.state.tasks} />
-
-            // Remove null and return the component which will show the user's tasks
+          }}
+        />
+        <Route
+        path="/tasks/:task(\d+)/edit" render={props => {
+            return <TaskForm {...props} updateTask={this.updateTask}/>
           }}
         />
         
