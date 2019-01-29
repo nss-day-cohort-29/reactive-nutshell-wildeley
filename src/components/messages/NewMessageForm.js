@@ -10,6 +10,7 @@ export default class NewMessageForm  extends Component {
         person_sending_the_message: "",
         message: "",
         person_receiving_the_message: "",
+        date: new Date().toISOString()
     }
 
     // Update state whenever an input field is edited

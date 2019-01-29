@@ -15,9 +15,11 @@ export default class Messages  extends Component {
             {
                 this.props.messages.map(message =>
                     <div className="message" key={message.id}>
-                        To {message.to} :  {message.message}
+                        From {message.person_sending_the_message} :
                         <br />
-                        From userId #: {message.userId}
+                        {message.message}
+                        <br />
+                        To : {message.person_receiving_the_message}
                         <br />
                         <button className="btn btn-primary" id={message.id} onClick={() => {console.log(`edit button # ${message.id} clicked`)}}> Edit this message </button>
                         <br />
