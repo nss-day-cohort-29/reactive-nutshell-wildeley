@@ -2,7 +2,7 @@ import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import './Messages.css'
 
-
+//set state here?
 export default class Messages  extends Component {
     render() {
         return (
@@ -15,12 +15,9 @@ export default class Messages  extends Component {
             {
                 this.props.messages.map(message =>
                     <div className="message" key={message.id}>
-                        From {message.person_sending_the_message} :
+                        <strong>{message.person_sending_the_message} </strong> says: {message.message}
                         <br />
-                        {message.message}
-                        <br />
-                        To : {message.person_receiving_the_message}
-                        <br />
+                        
                         <button className="btn btn-primary" id={message.id} onClick={() => {console.log(`edit button # ${message.id} clicked`)}}> Edit this message </button>
                         <br />
                         <button className="btn btn-primary" onClick={() => {console.log(`delete button # ${message.id} clicked`)}}> Delete this message </button>

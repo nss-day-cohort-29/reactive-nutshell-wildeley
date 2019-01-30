@@ -12,19 +12,17 @@ state = {
   users: []
 }
 
-// addMessage = newmessage => DataManager.postNewMessage(newmessage)
-//     .then(() => DataManager.getAllMessages())
-//     .then(messages => this.setState({
-//       messages: messages
-//     }))
-
 addMessage = message => {
   console.log("bloop")
   DataManager.postNewMessage(message)
-  .then(DataManager.getAllMessages())
+  .then(() => this.stickMessagesOnDom())
 }
 
 componentDidMount() {
+  this.stickMessagesOnDom()
+}
+
+stickMessagesOnDom() {
 
   const newState = {}
 
@@ -40,8 +38,8 @@ componentDidMount() {
     .then(() => {
       this.setState(newState)
     })
-}
 
+}
 
   render() {
     return (
@@ -63,9 +61,7 @@ componentDidMount() {
 
         <Route
           exact path="/messages" render={props => {
-            return <Messages  {...props} messages={this.state.messages} users={this.state.users}/>
-            // Remove null and return the component which will show the messages
-          }}
+            return <Messages  {...props} messages={this.state.messages} users={this.state.users}/>          }}
         />
 
         <Route

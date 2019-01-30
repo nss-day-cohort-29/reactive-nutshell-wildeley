@@ -9,7 +9,7 @@ export default class NewMessageForm  extends Component {
     state = {
         person_sending_the_message: "",
         message: "",
-        person_receiving_the_message: "",
+        // person_receiving_the_message: "",
         date: new Date().toISOString()
     }
 
@@ -26,7 +26,7 @@ export default class NewMessageForm  extends Component {
         // evt.preventDefault()
         console.log("this.state :", this.state)
         this.props.addMessage(this.state)
-        this.props.history.push("/messages/")
+        this.props.history.push("/messages")
         // const credentials = JSON.parse(localStorage.getItem('credentials'))
         // const messages = {
         //     "bloop"
@@ -66,7 +66,7 @@ export default class NewMessageForm  extends Component {
                                id="message" placeholder="What's on your mind today?" />
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="person_receiving_the_message">To: </label>
                         <select defaultValue="" name="person_receiving_the_message" id="person_receiving_the_message"
                                 onChange={this.handleFieldChange}>
@@ -75,8 +75,8 @@ export default class NewMessageForm  extends Component {
                             this.props.users.map(e => <option key={e.id} id={e.id}>{e.username}</option>)
                         }
                         </select>
-                    </div>
-
+                    </div> */}
+                <br />
                 <button
                     type="submit"
                     className="btn btn-primary"
