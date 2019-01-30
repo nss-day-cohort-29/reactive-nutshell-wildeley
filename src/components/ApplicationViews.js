@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import DataManager from './../modules/DataManager'
 
 import Messages from './messages/Messages'
+
 import NewMessageForm from "./messages/NewMessageForm";
 
 export default class ApplicationViews extends Component {
@@ -17,6 +18,17 @@ addMessage = message => {
   DataManager.postNewMessage(message)
   .then(() => this.stickMessagesOnDom())
 }
+
+deleteMessage = messageId => {
+  DataManager.deleteMessage(messageId)
+  .then(this.stickMessagesOnDom())
+}
+// deleteMessage = id => DataManager.delete("messages", id)
+//     .then(() => DataManager.getAll("messages"))
+//     .then(messages => this.setState({
+//       messages: messages
+//     }))
+
 
 componentDidMount() {
   this.stickMessagesOnDom()
@@ -61,7 +73,12 @@ stickMessagesOnDom() {
 
         <Route
           exact path="/messages" render={props => {
-            return <Messages  {...props} messages={this.state.messages} users={this.state.users}/>          }}
+            return <Messages
+              {...props}
+              messages={this.state.messages}
+              users={this.state.users}
+              deleteMessage={this.deleteMessage}
+              stickMessagesOnDom={this.stickMessagesOnDom}/> }}
         />
 
         <Route

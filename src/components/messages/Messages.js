@@ -1,8 +1,12 @@
-import { Route, Redirect } from "react-router-dom";
+// import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import MessagesCard from './MessagesCard'
 import './Messages.css'
 
-//set state here?
+// import DataManager from './../../modules/DataManager'
+// import ApplicationViews from './../ApplicationViews'
+
+
 export default class Messages  extends Component {
     render() {
         return (
@@ -11,20 +15,14 @@ export default class Messages  extends Component {
             <button id="AddMessage" onClick={() => {console.log("add button clicked")
                                 this.props.history.push("/messages/new")
                             }}>Add a new message</button>
-            <section className="messagesList">
-            {
+
+             <section className="messagesCard">
+
                 this.props.messages.map(message =>
-                    <div className="message" key={message.id}>
-                        <strong>{message.person_sending_the_message} </strong> says: {message.message}
-                        <br />
-                        
-                        <button className="btn btn-primary" id={message.id} onClick={() => {console.log(`edit button # ${message.id} clicked`)}}> Edit this message </button>
-                        <br />
-                        <button className="btn btn-primary" onClick={() => {console.log(`delete button # ${message.id} clicked`)}}> Delete this message </button>
-                    </div>
-                )
-            }
-            </section>
+
+                <MessagesCard messages={this.props.messages}/>
+
+             </section>
         </div>
         )
     }

@@ -11,14 +11,21 @@ export default {
     return fetch(`${remoteURL}/users`).then(e => e.json())
   },
   postNewMessage(newmessage) {
-      return fetch(`${remoteURL}/messages`, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newmessage)
-        }).then(data => data.json())
+    return fetch(`${remoteURL}/messages`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newmessage)
+    }).then(data => data.json())
+    },
+  deleteMessage(id) {
+    return fetch(`${remoteURL}/messages/${id}`, {
+        method: "DELETE"
+    })
+    .then(e => e.json())
     }
+
 //   getAllAscend(resource)  {
 //         return fetch(`${remoteURL}/${resource}?_sort=date&_order=asc`)
 //         .then(result => result.json())

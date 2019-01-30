@@ -59,23 +59,13 @@ export default class NewMessageForm  extends Component {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="message">Message</label>
+                        <label htmlFor="message">New Message</label>
                         <input type="text" required
                                className="form-control"
                                onChange={this.handleFieldChange}
                                id="message" placeholder="What's on your mind today?" />
                     </div>
 
-                    {/* <div className="form-group">
-                        <label htmlFor="person_receiving_the_message">To: </label>
-                        <select defaultValue="" name="person_receiving_the_message" id="person_receiving_the_message"
-                                onChange={this.handleFieldChange}>
-                            <option value="">(select user)</option>
-                        {
-                            this.props.users.map(e => <option key={e.id} id={e.id}>{e.username}</option>)
-                        }
-                        </select>
-                    </div> */}
                 <br />
                 <button
                     type="submit"
