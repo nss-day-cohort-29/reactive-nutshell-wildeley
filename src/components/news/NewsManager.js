@@ -14,6 +14,15 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newArticle)
-    }).then(data => data.json());
+    })
+    .then(data => data.json());
+  },
+  delete(id){
+    return fetch(`${remoteURL}/news/${id}`,{
+      method:"DELETE",
+      headers:{
+        "Content-Type": "application/json"
+        }
+    }).then(e=>e.json())
   }
 };

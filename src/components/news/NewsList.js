@@ -12,6 +12,9 @@ class NewsList extends Component {
                         <h2>{news.newsTitle}</h2>
                         <p>{news.synopsis}</p>
                         <p>{news.url}</p>
+                        <a href="#"
+                         onClick={() => this.props.deleteArticle(news.id)}
+                         className="card-link">Delete Article</a>
                     </div>
                     
                 )
