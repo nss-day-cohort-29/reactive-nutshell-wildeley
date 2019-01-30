@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 class NewsList extends Component {
     render() {
+        console.log(this.props.news)
         return (
             <section className="news">
             {

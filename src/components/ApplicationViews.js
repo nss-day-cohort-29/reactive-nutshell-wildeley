@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import NewsList from './news/NewsList'
 import NewsForm from './news/NewsForm'
 import NewsManager from './news/NewsManager'
+// import ".news/News.css"
 
 
 export default class ApplicationViews extends Component {
@@ -10,6 +11,15 @@ export default class ApplicationViews extends Component {
   state ={
     news:[]
   }
+
+  componentDidMount() {
+    const newState = {}
+
+    fetch("http://localhost:5002/news")
+        .then(r => r.json())
+        .then(allArticles => newState.news = allArticles)
+        .then(() => this.setState(newState))
+}
 
   newArticle = (article) => NewsManager.post(article)
   .then(() => NewsManager.getAll())
@@ -23,8 +33,11 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
 
         <Route
-          exact path="/" render={props => {
-            return <NewsForm {...props} addArticle={this.newArticle} />
+          exact path="/" render={props=> {
+            return <React.Fragment>
+              <NewsForm {...props} addArticle={this.newArticle} />
+              <NewsList {...props} news = {this.state.news}/>
+              </React.Fragment>
           }}
         />
 
