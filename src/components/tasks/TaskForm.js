@@ -1,5 +1,6 @@
 import React , { Component } from "react"
 import TaskManager from "../../modules/Taskmanager"
+import TaskList from "./TaskList"
 
 export default class TaskForm extends Component {
     state = {
@@ -23,11 +24,12 @@ constructNewTask = evt => {
             task: this.state.task,
             completionDate: this.state.completionDate
             
+            
         };
         console.log(task)
         this.props
         .addTask(task)
-        .then(() => this.props.history.push("/tasks/new"));
+        .then(() => this.props.history.push("/tasks"));
     }
 }
 

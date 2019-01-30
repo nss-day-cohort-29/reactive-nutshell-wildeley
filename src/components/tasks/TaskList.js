@@ -17,11 +17,7 @@ export default class TaskList extends Component {
                         Add a task
                     </button>
                     </div>
-                    {/* <section className="tasks">
-                    {this.props.tasks.map(task => (
-                        <TaskForm key={task.id} task={task} {...this.props} />
-                    ))}
-                    </section> */}
+                    
                     </React.Fragment>
                 )
             }

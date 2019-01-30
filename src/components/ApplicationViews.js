@@ -32,7 +32,7 @@ export default class ApplicationViews extends Component {
       .then(() => TaskManager.getAll())
       .then(tasks =>
         this.setState({
-          tasks: tasks
+          tasks: task
         })
       );
 
