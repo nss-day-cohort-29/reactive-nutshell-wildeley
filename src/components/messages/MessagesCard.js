@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+// import Messages from './Messages'
 
 class MessagesCard extends Component {
     render() {
         return (
+        <div>
+            <button id="AddMessage" onClick={() => {console.log("add button clicked")
+                                this.props.history.push("/messages/new")
+                            }}>Add a new message</button>
+
             <section className="messagesCard">
             {
                 this.props.messages.map(message =>
@@ -21,6 +27,7 @@ class MessagesCard extends Component {
                 )
             }
             </section>
+        </div>
         )
     }
 }

@@ -4,8 +4,8 @@ import React, { Component } from "react";
 import DataManager from './../modules/DataManager'
 
 import Messages from './messages/Messages'
-
 import NewMessageForm from "./messages/NewMessageForm";
+
 import NewsList from './news/NewsList'
 import NewsForm from './news/NewsForm'
 import NewsManager from './news/NewsManager'
@@ -13,23 +13,38 @@ import NewsManager from './news/NewsManager'
 
 export default class ApplicationViews extends Component {
 
-state = {
-  messages: [],
-  users: [],
-  news: []
-}
+  state = {
+    messages: [],
+    users: [],
+    news: []
+  }
 
-addMessage = message => {
-  console.log("bloop")
-  DataManager.postNewMessage(message)
-  .then(() => this.stickMessagesOnDom())
-}
+  addMessage = message => {
+    console.log("bloop")
+    DataManager.postNewMessage(message)
+    .then(() => this.stickMessagesOnDom())
+  }
 
-deleteMessage = messageId => {
-  DataManager.deleteMessage(messageId)
-  .then(this.stickMessagesOnDom())
-}
-// deleteMessage = id => DataManager.delete("messages", id)
+  deleteMessage = messageId => {
+    DataManager.deleteMessage(messageId)
+    .then(this.stickMessagesOnDom())
+  }
+
+      deleteArticle = id => NewsManager.delete(id)
+        .then(() => NewsManager.getAll())
+        .then(allArticles => this.setState({
+          news: allArticles
+        })
+        )
+
+
+    newArticle = (article) => NewsManager.post(article)
+      .then(() => NewsManager.getAll())
+      .then(allArticles => this.setState({
+        news: allArticles
+      })
+      )
+  // deleteMessage = id => DataManager.delete("messages", id)
 //     .then(() => DataManager.getAll("messages"))
 //     .then(messages => this.setState({
 //       messages: messages
@@ -42,16 +57,8 @@ componentDidMount() {
   fetch("http://localhost:5002/news")
     .then(r => r.json())
     .then(allArticles => newState.news = allArticles)
-    .then(() => this.setState(newState))
 
-    this.stickMessagesOnDom()
-}
-
-stickMessagesOnDom() {
-
-  const newState = {}
-
-  DataManager.getAllMessages()
+    DataManager.getAllMessages()
     .then(allMessages => {
       newState.messages = allMessages
     })
@@ -60,9 +67,26 @@ stickMessagesOnDom() {
       newState.users = allUsers
     })
 
-    .then(() => {
-      this.setState(newState)
-    })
+    // this.stickMessagesOnDom()
+    .then(() => this.setState(newState))
+}
+
+stickMessagesOnDom() {
+
+  // const newState = {}
+
+  // DataManager.getAllMessages()
+  //   .then(allMessages => {
+  //     newState.messages = allMessages
+  //   })
+  // DataManager.getAllUsers()
+  //   .then(allUsers => {
+  //     newState.users = allUsers
+  //   })
+
+  //   .then(() => {
+  //     this.setState(newState)
+  //   })
 
 }
 
@@ -70,12 +94,15 @@ stickMessagesOnDom() {
     return (
       <React.Fragment>
 
-        <Route
-          exact path="/" render={props => {
-            return null
-            // Remove null and return the component which will show news articles
-          }}
-        />
+
+      <Route
+        exact path="/" render={props => {
+          return <React.Fragment>
+            <NewsForm {...props} addArticle={this.newArticle} />
+            <NewsList {...props} news={this.state.news} deleteArticle={this.deleteArticle} />
+          </React.Fragment>
+        }}
+      />
 
         <Route
           path="/friends" render={props => {
@@ -96,7 +123,8 @@ stickMessagesOnDom() {
 
         <Route
           exact path="/messages/new" render={props => {
-            return <NewMessageForm {...props}
+            return <NewMessageForm
+              {...props}
               addMessage={this.addMessage}
               users={this.state.users}
             />
@@ -126,59 +154,4 @@ stickMessagesOnDom() {
   //       news: allArticles
   //   })
   // )
-  // }
- ///////////refactor delete///////
-
-  deleteArticle = id => NewsManager.delete(id)
-    .then(() => NewsManager.getAll())
-    .then(allArticles => this.setState({
-      news: allArticles
-    })
-    )
-
-
-newArticle = (article) => NewsManager.post(article)
-  .then(() => NewsManager.getAll())
-  .then(allArticles => this.setState({
-    news: allArticles
-  })
-  )
-
-render() {
-  return (
-    <React.Fragment>
-
-      <Route
-        exact path="/" render={props => {
-          return <React.Fragment>
-            <NewsForm {...props} addArticle={this.newArticle} />
-            <NewsList {...props} news={this.state.news} deleteArticle={this.deleteArticle} />
-          </React.Fragment>
-        }}
-      />
-
-      <Route
-        path="/friends" render={props => {
-          return null
-          // Remove null and return the component which will show list of friends
-        }}
-      />
-
-      <Route
-        path="/messages" render={props => {
-          return
-          // Remove null and return the component which will show the messages
-        }}
-      />
-
-      <Route
-        path="/tasks" render={props => {
-          return null
-          // Remove null and return the component which will show the user's tasks
-        }}
-      />
-
-    </React.Fragment>
-  );
-}
-}
+  }

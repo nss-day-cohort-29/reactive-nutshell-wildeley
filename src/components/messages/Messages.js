@@ -1,29 +1,25 @@
-// import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import MessagesCard from './MessagesCard'
 import './Messages.css'
 
 // import DataManager from './../../modules/DataManager'
-// import ApplicationViews from './../ApplicationViews'
+import ApplicationViews from './../ApplicationViews'
 
+//this component maps over allMessages, passed in via props from AppViews, and passes each message into the MessageCard
 
 export default class Messages  extends Component {
     render() {
+
+        // console.log("this.props", this.props)
+        // console.log("this.state", this.state)
         return (
-        <div>
-            <h3>ChatRoom</h3>
-            <button id="AddMessage" onClick={() => {console.log("add button clicked")
-                                this.props.history.push("/messages/new")
-                            }}>Add a new message</button>
 
-             <section className="messagesCard">
-
-                this.props.messages.map(message =>
-
-                <MessagesCard messages={this.props.messages}/>
-
-             </section>
-        </div>
+            this.props.messages.map(message =>
+                <MessagesCard
+                messages={this.props.messages}/>
+            )
         )
     }
+
 }
