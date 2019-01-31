@@ -34,7 +34,7 @@ export default class ApplicationViews extends Component {
   // )
   // }
  ///////////refactor delete///////
- 
+
   deleteArticle = id => NewsManager.delete(id)
     .then(() => NewsManager.getAll())
     .then(allArticles => this.setState({
@@ -50,6 +50,8 @@ newArticle = (article) => NewsManager.post(article)
   })
   )
 
+  
+
 render() {
   return (
     <React.Fragment>
@@ -62,6 +64,13 @@ render() {
           </React.Fragment>
         }}
       />
+       {/* <Route exact path="/new" render={props => {
+          return 
+          <NewsForm {...props} 
+          addArticle= {this.newArticle} />
+        
+          }}
+      /> */}
 
       <Route
         path="/friends" render={props => {
