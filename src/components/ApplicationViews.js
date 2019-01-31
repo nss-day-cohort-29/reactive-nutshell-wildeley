@@ -31,7 +31,10 @@ export default class ApplicationViews extends Component {
 
   deleteMessage = messageId => {
     DataManager.deleteMessage(messageId)
-    .then(this.stickMessagesOnDom())
+    .then(() => DataManager.getAllMessages())
+    .then(allMessages => {
+      this.setState({messages: allMessages})
+    })
   }
 
   // deleteArticle = id => {
