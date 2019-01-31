@@ -8,7 +8,10 @@ export default class NewsForm extends Component {
       synopsis: "",
       url: ""
     }
-    
+   TimeStamp = new Intl.DateTimeFormat('en-US', 
+   { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date())
+
+   
 
 
     handleFieldChange = evt => {
@@ -22,7 +25,8 @@ export default class NewsForm extends Component {
             const article = {
                 newsTitle: this.state.newsTitle,
                 synopsis: this.state.synopsis,
-                url: this.props.url            
+                url: this.state.url,
+                date:this.TimeStamp           
             }
             this.props.addArticle(article).then(() => this.props.history.push("/"))
         }
@@ -61,6 +65,8 @@ export default class NewsForm extends Component {
                           value={this.state.url}
                            />
                     </div>
+
+                    
                     
                     <button type="submit"
                      onClick={this.constructNewArticle} className="btn btn-primary">

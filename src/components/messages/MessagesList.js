@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
-import MessagesCard from './MessagesCard'
+// import MessagesCard from './MessagesCard'
 
 class MessagesList extends Component {
     render() {
         console.log(this.props.messages)
 
         return (
-            <div><MessagesCard />
-            <section className="news">
+            <div>
+            <button id="AddMessage" onClick={() => {console.log("add button clicked")
+                            // this.props.addMessage()
+                               this.props.history.push("/messages/new")
+                            }}>Add a new message</button>
+            <section className="messages">
             {
                 this.props.messages.map(message =>
                     <div className="message" key={message.id}>
@@ -25,7 +29,7 @@ class MessagesList extends Component {
                 )
             }
             </section>
-            </div>
+             </div>
         )
     }
 }

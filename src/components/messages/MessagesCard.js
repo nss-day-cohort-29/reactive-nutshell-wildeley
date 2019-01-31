@@ -1,6 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-// import Messages from './Messages'
 
 class MessagesCard extends Component {
     render()
@@ -11,9 +10,8 @@ class MessagesCard extends Component {
             <React.Fragment>
 
             <button id="AddMessage" onClick={() => {console.log("add button clicked")
-            // console.log("onclick: <MessagesCard /> this.props", this.props)
 
-                            //    this.props.messages.history.push("/messages/new")
+                               this.props.messages.history.push("/messages/new")
                             }}>Add a new message</button>
 
            {/* <MessagesList /> */}

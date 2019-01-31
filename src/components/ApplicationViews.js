@@ -22,14 +22,31 @@ export default class ApplicationViews extends Component {
 
   addMessage = message => {
     console.log("bloop")
-    DataManager.postNewMessage(message)
-    .then(() => this.stickMessagesOnDom())
+    return DataManager.postNewMessage(message)
+    .then(() => DataManager.getAllMessages())
+    .then(allMessages => {
+      this.setState({messages: allMessages})
+    })
   }
 
   deleteMessage = messageId => {
     DataManager.deleteMessage(messageId)
     .then(this.stickMessagesOnDom())
   }
+
+  // deleteArticle = id => {
+  //   return fetch(`http://localhost:5002/news/${id}`, {
+  //       method: "DELETE"
+  //   })
+  //   .then(e => e.json())
+  //   .then(() => fetch(`http://localhost:5002/news`))
+  //   .then(e => e.json())
+  //   .then(allArticles => this.setState({
+  //       news: allArticles
+  //   })
+  // )
+  // }
+ ///////////refactor delete///////
 
   deleteArticle = id => NewsManager.delete(id)
     .then(() => NewsManager.getAll())
@@ -96,6 +113,7 @@ stickMessagesOnDom() {
       <React.Fragment>
 
 
+
       <Route
         exact path="/" render={props => {
           return <React.Fragment>
@@ -104,6 +122,13 @@ stickMessagesOnDom() {
           </React.Fragment>
         }}
       />
+       {/* <Route exact path="/new" render={props => {
+          return
+          <NewsForm {...props}
+          addArticle= {this.newArticle} />
+
+          }}
+      /> */}
 
         <Route
           path="/friends" render={props => {
@@ -119,6 +144,8 @@ stickMessagesOnDom() {
               messages={this.state.messages}
               users={this.state.users}
               deleteMessage={this.deleteMessage}
+              addMessage={this.addMessage}
+
               stickMessagesOnDom={this.stickMessagesOnDom}/> }}
         />
 
