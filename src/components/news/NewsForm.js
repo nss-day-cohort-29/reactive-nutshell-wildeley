@@ -11,6 +11,8 @@ export default class NewsForm extends Component {
    TimeStamp = new Intl.DateTimeFormat('en-US', 
    { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date())
 
+  
+
    
 
 
@@ -37,6 +39,7 @@ export default class NewsForm extends Component {
     render() {
         return (
             <React.Fragment>
+
                 <form className="newsForm">
                     <div className="form-group">
                         <label htmlFor="newsTitle">News Title</label>
