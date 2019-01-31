@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import NewsList from './news/NewsList'
 import NewsForm from './news/NewsForm'
 import NewsManager from './news/NewsManager'
-// import ".news/News.css"
+import "./news/News.css"
 
 
 export default class ApplicationViews extends Component {
@@ -51,6 +51,7 @@ newArticle = (article) => NewsManager.post(article)
   )
 
   
+  
 
 render() {
   return (
@@ -59,18 +60,17 @@ render() {
       <Route
         exact path="/" render={props => {
           return <React.Fragment>
-            <NewsForm {...props} addArticle={this.newArticle} />
+            {/* <NewsForm {...props} addArticle={this.newArticle} /> */}
             <NewsList {...props} news={this.state.news} deleteArticle={this.deleteArticle} />
           </React.Fragment>
         }}
       />
-       {/* <Route exact path="/new" render={props => {
-          return 
-          <NewsForm {...props} 
+       <Route exact path="/new" render={props => {
+          return <NewsForm {...props} 
           addArticle= {this.newArticle} />
         
           }}
-      /> */}
+      />
 
       <Route
         path="/friends" render={props => {
