@@ -15,7 +15,7 @@ export default {
       },
       body: JSON.stringify(newArticle)
     })
-    .then(data => data.json());
+    .then(e => e.json());
   },
   delete(id){
     return fetch(`${remoteURL}/news/${id}`,{

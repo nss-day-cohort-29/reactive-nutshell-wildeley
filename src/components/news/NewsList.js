@@ -11,7 +11,7 @@ class NewsList extends Component {
         //      })
         return (
             <React.Fragment>
-                <div class="list">
+                <div className="list">
                 <div className="articleButton">
                     <button type="button"
                             className="btn btn-success"
@@ -24,7 +24,7 @@ class NewsList extends Component {
             <section className="news">
             {
                 this.props.news.map(news =>
-                    <div class = "eachListDiv"key={news.id}>
+                    <div className = "eachListDiv"key={news.id}>
                         <h3><i>{news.newsTitle}</i></h3>
                         <p><b>{news.synopsis}</b></p>
                         <a href="#">{news.url}</a>
