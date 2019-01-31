@@ -5,6 +5,16 @@ class NewsList extends Component {
     render() {
         console.log(this.props.news)
         return (
+            <React.Fragment>
+                {/* <div className="articleButton">
+                    <button type="button"
+                            className="btn btn-success"
+                            onClick={() => {
+                                this.props.history.push("/new")}
+                            }>
+                        Add Article
+                    </button>
+                </div> */}
             <section className="news">
             {
                 this.props.news.map(news =>
@@ -12,6 +22,7 @@ class NewsList extends Component {
                         <h2>{news.newsTitle}</h2>
                         <p>{news.synopsis}</p>
                         <p>{news.url}</p>
+                        <p>{news.date}</p>
                         <a href="#"
                          onClick={() => this.props.deleteArticle(news.id)}
                          className="card-link">Delete Article</a>
@@ -20,6 +31,7 @@ class NewsList extends Component {
                 )
             }
             </section>
+            </React.Fragment>
         )
     }
 }
