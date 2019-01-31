@@ -19,9 +19,24 @@ export default class TaskList extends Component {
                         Add a task
                     </button>
                 </div>
+                {/* GETTING ALL TASKS CURRENTLY IN JSON*/}
 
+                {this.props.tasks.map(task => (
+                    <div key={task.id}>
+                        <div className="card-body">
+                            <h5 className="card-title">
+                                {task.task}<br></br>
+                                {task.completionDate}
+                            </h5>
+                            <button>Delete</button>
+
+                        </div>
+                    </div>
+                ))}
             </React.Fragment>
         )
 
     }
 }
+    
+            

@@ -12,10 +12,17 @@ export default class ApplicationViews extends Component {
   componentDidMount() {
     const newState = {}
 
-    fetch("http://localhost:5002/tasks/new")
+    fetch("http://localhost:5002/tasks")
       .then(r => r.json())
-      .then(tasks =>  
-      this.setState(newState))
+      .then(r => {
+        console.log(r)
+        newState.tasks = r
+        console.log(newState)
+        this.setState(newState) 
+
+      
+      })
+        
   }
 
 
@@ -39,12 +46,12 @@ export default class ApplicationViews extends Component {
       })
     });
   };
-  addTask = task =>
-    TaskManager.post(task)
-      
-      .then(task =>
-        this.setState({
-          tasks: task
+  addTask = (task) =>TaskManager.post(task)
+      .then(() =>TaskManager.getAll())      
+      .then(Alltask => this.setState({
+          
+          tasks: Alltask
+
         })
       );
 
