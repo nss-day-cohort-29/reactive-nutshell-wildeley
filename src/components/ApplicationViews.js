@@ -3,7 +3,8 @@ import React, { Component } from "react";
 
 import DataManager from './../modules/DataManager'
 
-import Messages from './messages/Messages'
+// import Messages from './messages/Messages'
+import MessagesList from './messages/MessagesList'
 import NewMessageForm from "./messages/NewMessageForm";
 
 import NewsList from './news/NewsList'
@@ -30,20 +31,20 @@ export default class ApplicationViews extends Component {
     .then(this.stickMessagesOnDom())
   }
 
-      deleteArticle = id => NewsManager.delete(id)
-        .then(() => NewsManager.getAll())
-        .then(allArticles => this.setState({
-          news: allArticles
-        })
-        )
+  deleteArticle = id => NewsManager.delete(id)
+    .then(() => NewsManager.getAll())
+    .then(allArticles => this.setState({
+      news: allArticles
+    })
+    )
 
 
-    newArticle = (article) => NewsManager.post(article)
-      .then(() => NewsManager.getAll())
-      .then(allArticles => this.setState({
-        news: allArticles
-      })
-      )
+  newArticle = (article) => NewsManager.post(article)
+    .then(() => NewsManager.getAll())
+    .then(allArticles => this.setState({
+      news: allArticles
+    })
+    )
   // deleteMessage = id => DataManager.delete("messages", id)
 //     .then(() => DataManager.getAll("messages"))
 //     .then(messages => this.setState({
@@ -113,7 +114,7 @@ stickMessagesOnDom() {
 
         <Route
           exact path="/messages" render={props => {
-            return <Messages
+            return <MessagesList
               {...props}
               messages={this.state.messages}
               users={this.state.users}
@@ -125,6 +126,7 @@ stickMessagesOnDom() {
           exact path="/messages/new" render={props => {
             return <NewMessageForm
               {...props}
+
               addMessage={this.addMessage}
               users={this.state.users}
             />
