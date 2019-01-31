@@ -18,6 +18,8 @@ export default class TaskForm extends Component {
     }
 
     constructNewTask = evt => {
+        console.log("anything")
+        debugger
         evt.preventDefault();
         if (this.state.task === "") {
             window.alert("Please select yout task");
@@ -26,7 +28,7 @@ export default class TaskForm extends Component {
                 task: this.state.task,
                 completionDate: this.state.completionDate
             };
-            console.log(task)
+            console.log("task",task)
             this.props
                 .addTask(task)
                 .then(() => this.props.history.push("/tasks"));
@@ -51,7 +53,10 @@ export default class TaskForm extends Component {
                             onChange={this.handleFieldChange}
                             id="completionDate"
                         />
+                       
+                            
                     </div>
+                    
 
 
                     <button type="submit" onClick={this.constructNewTask} className="btn btn-primary">Submit</button>
