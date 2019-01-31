@@ -8,7 +8,7 @@ import './Messages.css'
 export default class Messages  extends Component {
     render() {
 
-        console.log("<Messages /> this.props", this.props)
+        // console.log("<Messages /> this.props", this.props)
         // console.log("this.state", this.state)
         return (
             <React.Fragment>
@@ -21,12 +21,7 @@ export default class Messages  extends Component {
                 <MessagesList />
             </React.Fragment>
 
-            // this.props.messages.map(message =>
-            //     <MessagesCard
-
-            //     // message={this.props}
-            //     />
-            // )
+            
         )
     }
 

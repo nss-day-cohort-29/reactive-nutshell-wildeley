@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import './Messages.css'
 
-
 export default class NewMessageForm  extends Component {
 
     // Set initial state
